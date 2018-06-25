@@ -74,8 +74,16 @@ var sql = "SELECT  staffID FROM employees where (staffID REGEXP  '"+req.body.sta
 
                   });
               }
-          },3000);
-              con.query("UPDATE logTable SET ")
+                  con.query("INSERT INTO logTable (entered_first_guarantor)VALUES ('"+req.body.GstaffID+"')");
+                  if (con.query("SELECT staffID from employees where staffID LIKE '"+req.body.GstaffID+"') ")){
+                      con.query("UPDATE logTable SET first_guarantor_existed= 'yes' where entered_ID = ''",function(err){
+                          if (err){console.error("SQL Error",err);}
+                      })
+                  }
+          },1000);
+
+              //logging guarantors
+
           }
       });
   }

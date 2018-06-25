@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Loans</title>
+  <link rel="stylesheet" href="stylesheets/style.css"/>
+</head>
+<body id = "body" background = "b1.jpg">
+<div id = "big_wrapper">
+  <header id ="header">
+    <h1 align = "center"><strong>Loan Application</strong></h1>
+    <h2 align = "center"><marquee>Please fill the form below.</marquee></h2>
+  </header>
+  <div id = "forms">
+    <form name="Loans" method="post" action="/employee" id="form">
+      <legend><strong>Applicant Details</strong></legend>
+
+
+      <label for = "staffID">Staff ID</label></br>
+      <input type = "number" id = "staffID" name="staffID">
+      </br>
+      <div id = "G1">
+        <br><br>
+        <legend><strong>Guarantor 1</strong></legend>
+        <label for = "G_staffID">Staff ID</label></br>
+        <input type = "number" id = "G_staffID" name="GstaffID">
+        </br>
+        </br>
+      </div>
+      <div id = "G2">
+        <legend><strong>Guarantor 2</strong></legend>
+        <label for = "G_staffID">Staff ID</label></br>
+        <input type = "number" id = "G_staffID" name="H_staffID">
+        </br>
+        </br>
+      </div>
+      <div id = "G3">
+        <legend><strong>Guarantor 3</strong></legend>
+        <label for = "G_staffID">Staff ID</label></br>
+        <input type = "number" id = "G_staffID" name="I_staffID">
+        <br>
+        <br>
+
+        <label for = "amounts">Amount</label></br>
+        <select id="drop" class = "field-select" placeholder = "Currency"/><option value = "Ghana">Ghc</option>
+        <option value = "USA">USD</option><option value = "Eng">Pounds</option><option value = "Euro">Euros</option>&nbsp;
+        <input type="number" id="amounts" name="Amount" class = "field-divided" placeholder=""/>
+        </br>
+        </br>
+        </br>
+        <input type="submit" value="Submit">
+
+
+
+  </div>
+    </form>
+  </div>
+</div>
+</body>
+
+<footer>
+  <div id = "footer">
+    <p>Created By Baafi and Jedidiah. Project. 13/06/2018 </p>
+  </div>
+</footer>
+</html>

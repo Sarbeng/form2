@@ -1,0 +1,4 @@
+the log table is supposed to take a log of all the information present within the allocated form, so if user enters information we want to take note.
+if user deleted info we want to know, if user enters amount we want to take note,if user entered wrong username take note.
+if user entered guarantors we want to know.
+if user deleted guarantors and re-entered them we want to take note.

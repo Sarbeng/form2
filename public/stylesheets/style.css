@@ -1,0 +1,115 @@
+*{
+  margin: 5px;
+  padding: 0px;
+}
+h1{
+  font: bold 30px Palatino;
+  text-align: left;
+
+}
+h2{
+  font: 15px Palatino;
+}
+header{
+  display: block;
+}
+body{
+  background-attachment: fixed;
+  text-align: center;
+  font-family: 'garamond', sans-serif;
+  position: relative;
+  font-weight:400px;
+}
+input[type = text], input[type = number]{
+  -moz-box-shadow: inset -3px -3px 10px #eee;
+  -webkit-box-shadow: inset -3px -3px 10px #eee;
+  box-shadow: inset -3px -3px 10px #eee;
+  border-radius: 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: Times New Roman;
+  font-size: 100%;
+  box-align: center;
+  display: inline-block;
+}
+input[type = submit]{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 20%;
+  border-radius:5px;
+  font-style: italic;
+  padding: 10px 10px;
+  cursor: pointer;
+  background-color: #3CBC8D;
+
+}
+label{
+  display: inline-block;
+  margin: 0 0 3px 0;
+  padding: 0px;
+  font: Times New Roman;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#big_wrapper{
+  border: 0px;
+  margin: fixed;
+  width: fixed;
+  text-align: left;
+}
+#header{
+  background: white;
+  border: 10px;
+  border-bottom-color: black;
+  font: 600 1.5em/1 'Raleway', sans-serif;
+  color: rgba(0,0,0,.5);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .5em;
+  width: 100%;
+}
+#forms{
+  width: 500px;
+  position: relative;
+  margin: 10px auto;
+  text-align: center;
+  border: 0;
+  padding: 20px;
+  font: Times;
+  font-size: 90%;
+  background: #F7F7F7;
+  border: 6px solid silver;
+  border-radius: 5px;
+
+}
+#Name{
+  display: inline-block;
+}
+#footer{
+  border: 10px;
+  border-bottom-color: black;
+  font: 600 1.5em/1 'Raleway', sans-serif;
+  color: rgba(0,0,0,.5);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .5em;
+  width: 100%;
+
+}
+
+a:link{
+  background-color: white;
+  color: black;
+  border: 2px solid green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover{
+  color:hotpink;
+}

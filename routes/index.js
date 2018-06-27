@@ -57,36 +57,36 @@ var sql = "SELECT  staffID FROM employees where (staffID REGEXP  '"+req.body.sta
                }
            });
        }
-      }});
-
-      req.getConnection(function(err,con){
-          if (err) {
-              console.error("SQL connection error", err);
-              return next(err);
-          }
-          else {
-              con.query("INSERT INTO logTable(entered_ID) VALUES ('"+req.body.staffID+"')");
+      }
+          //here in take a log of the users actions. everything that he does.
+             con.query("INSERT INTO logTable(entered_ID,entered_first_guarantor,entered_second_guarantor,entered_third_guarantor,entered_amount,date_and_time_information_was_entered) " +
+                 "VALUES ('"+req.body.staffID+"','"+req.body.GstaffID+"'," +
+                 "'"+req.body.H_staffID+"','"+req.body.I_staffID+"','"+req.body.Amount+"',CURRENT_TIMESTAMP)");
               setTimeout(function(){
-              if(con.query("SELECT staffID from employees where staffID LIKE '"+req.body.staffID+"'")){
-                  con.query("UPDATE logTable SET Staff_ID_existed ='yes' where entered_ID = " +
+              if(con.query("SELECT staffID from employees where staffID LIKE '"+req.body.staffID+"'")&&
+                  con.query("SELECT staffID from employees where staffID LIKE '"+req.body.GstaffID+"'")
+                  &&con.query("SELECT staffID FROM employees WHERE staffID LIKE '"+req.body.H_staffID+"'")&&
+                  con.query("SELECT staffID FROM employees WHERE staffID LIKE '"+req.body.I_staffID+"'  ")){
+                  con.query("UPDATE logTable SET Staff_ID_existed ='yes',first_guarantor_existed ='yes', second_guarantor_existed ='yes' ," +
+                      "third_guarantor_existed='yes'  where entered_ID = " +
                       "( select staffID from employees where staffID LIKE '"+req.body.staffID+"') ",function(err,rows){
                      if (err){ console.error("SQL Error",err);}
 
                   });
-              }
+              }/*
                   con.query("INSERT INTO logTable (entered_first_guarantor)VALUES ('"+req.body.GstaffID+"')");
                   if (con.query("SELECT staffID from employees where staffID LIKE '"+req.body.GstaffID+"') ")){
                       con.query("UPDATE logTable SET first_guarantor_existed= 'yes' where entered_ID = ''",function(err){
                           if (err){console.error("SQL Error",err);}
                       })
-                  }
+                  }*/
           },1000);
 
               //logging guarantors
 
-          }
-      });
-  }
+
+
+  });}
   catch(ex){
     if (ex) {
       console.error("Internal Error",ex);

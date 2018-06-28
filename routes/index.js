@@ -63,23 +63,85 @@ var sql = "SELECT  staffID FROM employees where (staffID REGEXP  '"+req.body.sta
                  "VALUES ('"+req.body.staffID+"','"+req.body.GstaffID+"'," +
                  "'"+req.body.H_staffID+"','"+req.body.I_staffID+"','"+req.body.Amount+"',CURRENT_TIMESTAMP)");
               setTimeout(function(){
-              if(con.query("SELECT staffID from employees where staffID LIKE '"+req.body.staffID+"'")&&
-                  con.query("SELECT staffID from employees where staffID LIKE '"+req.body.GstaffID+"'")
-                  &&con.query("SELECT staffID FROM employees WHERE staffID LIKE '"+req.body.H_staffID+"'")&&
-                  con.query("SELECT staffID FROM employees WHERE staffID LIKE '"+req.body.I_staffID+"'  ")){
-                  con.query("UPDATE logTable SET Staff_ID_existed ='yes',first_guarantor_existed ='yes', second_guarantor_existed ='yes' ," +
-                      "third_guarantor_existed='yes'  where entered_ID = " +
+                  function StaffID(){
+              if(con.query("SELECT staffID from employees where staffID LIKE '"+req.body.staffID+"'")){
+                  con.query("UPDATE logTable SET Staff_ID_existed ='1'  where entered_ID = " +
                       "( select staffID from employees where staffID LIKE '"+req.body.staffID+"') ",function(err,rows){
                      if (err){ console.error("SQL Error",err);}
 
                   });
-              }/*
+              }
+              else{
+                  con.query("UPDATE logTable SET Staff_ID_existed ='0'  where entered_ID = " +
+                      "( select staffID from employees where staffID LIKE '"+req.body.staffID+"') ",function(err,rows){
+                      if (err){ console.error("SQL Error",err);}
+
+                  });
+              }}
+              //taking a log of the first guarantor
+                  function GStaffID(){
+                  if(con.query("SELECT staffID from employees where staffID LIKE '"+req.body.GstaffID+"'")){
+                      con.query("UPDATE logTable SET first_guarantor_existed ='1'  where entered_ID = " +
+                          "( select staffID from employees where staffID LIKE '"+req.body.staffID+"') ",function(err,rows){
+                          if (err){ console.error("SQL Error",err);}
+
+                      });
+                  }
+                  else{
+                  con.query("Update logTable SET first_guarantor_existed='0' where entered=" +
+                      "( select staffID from employees where staffID LIKE '"+req.body.staffID+"')",function(err){
+                      if (err){
+                          console.error("SQL ERROR",err);
+                      }
+                  });
+                  }}
+                  //taking a log of secong guarantor
+                  function HStaffID () {
+                      if (con.query("SELECT staffID from employees where staffID LIKE '" + req.body.H_staffID + "'")) {
+                          con.query("UPDATE logTable SET second_guarantor_existed ='1'  where entered_ID = " +
+                              "( select staffID from employees where staffID LIKE '" + req.body.staffID + "') ", function (err, rows) {
+                              if (err) {
+                                  console.error("SQL Error", err);
+                              }
+
+                          });
+                      }
+                      else {
+                          con.query("Update logTable SET second_guarantor_existed='0' where entered=" +
+                              "( select staffID from employees where staffID LIKE '" + req.body.staffID + "')", function (err) {
+                              if (err) {
+                                  console.error("SQL ERROR", err);
+                              }
+                          });
+                      }
+                  }
+                  //taking a log of the third guarntor
+                  function TstaffID(){
+                  if(con.query("SELECT staffID from employees where staffID LIKE '"+req.body.I_staffID+"'")){
+                      con.query("UPDATE logTable SET third_guarantor_existed ='1'  where entered_ID = " +
+                          "( select staffID from employees where staffID LIKE '"+req.body.staffID+"') ",function(err,rows){
+                          if (err){ console.error("SQL Error",err);}
+
+                      });
+                  }
+                  else{
+                      con.query("Update logTable SET third_guarantor_existed='0' where entered=" +
+                          "( select staffID from employees where staffID LIKE '"+req.body.staffID+"')",function(err){
+                          if (err){
+                              console.error("SQL ERROR",err);
+                          }
+                      });
+                  }}/*
                   con.query("INSERT INTO logTable (entered_first_guarantor)VALUES ('"+req.body.GstaffID+"')");
                   if (con.query("SELECT staffID from employees where staffID LIKE '"+req.body.GstaffID+"') ")){
                       con.query("UPDATE logTable SET first_guarantor_existed= 'yes' where entered_ID = ''",function(err){
                           if (err){console.error("SQL Error",err);}
                       })
                   }*/
+                  GStaffID();
+                  HStaffID();
+                  StaffID();
+                  TstaffID();
           },1000);
 
               //logging guarantors

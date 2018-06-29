@@ -28,18 +28,19 @@ con.connect(function(err){
         }
         console.log(rows);    });
 }*/
-/*con.query("INSERT INTO employees VALUES ?",[values],function(err,rows){
+/*
+con.query("INSERT INTO employees VALUES ?",[values],function(err,rows){
     if (err) {
         console.error("SQL error ", err);
     }
     console.log(rows);
 });*/
 
-con.query("INSERT INTO logTable(Staff_ID_existed) VALUES('y') where entered_ID LIKE '\"+req.body.staffID+\"'",[values],function(err,rows){
+/*con.query("INSERT INTO logTable(Staff_ID_existed) VALUES('y') where entered_ID LIKE '\"+req.body.staffID+\"'",[values],function(err,rows){
     if (err) {
         console.error("SQL error ", err);
     }
     console.log(rows);
-});
+});*/
 
 con.end();

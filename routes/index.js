@@ -62,15 +62,21 @@ var sql = "SELECT  staffID FROM employees where (staffID REGEXP  '"+req.body.sta
      // while(true)
      setTimeout(function(){
          //insertion of entered values occurs at this point
-        con.query("INSERT INTO logTable(entered_ID) VALUES ('"+req.body.staffID+"')  ",function(err){
+        con.query("INSERT INTO logTable(entered_ID,entered_first_guarantor,entered_second_guarantor,"+
+          "entered_third_guarantor,entered_amount)"
+      + " VALUES ('"+req.body.staffID+"','"+req.body.GstaffID+"','"+req.body.H_staffID+"','"+req.body.I_staffID+"',"
+      +" '"+req.body.Amount+"')  ",function(err){
             if (err){
                 console.error("SQL Query Error",err);
-            }
-            return(console.log(sql.query));
-        });
+                return next (err);
+            }}
+          );
         //checking of validity of information occurs at this point
          if(con.query("SELECT staffID FROM employees where staffID = '"+req.body.staffID+"' ")){
-            con.query("UPDATE logTable SET ");
+            con.query("UPDATE logTable SET Staff_ID_existed =1");
+         }
+         else{
+           con.query("UPDATE logTable SET Staff_ID_exited = 0 ");
          }
      },100);
 

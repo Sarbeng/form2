@@ -20,14 +20,16 @@ let values = [
 con.connect(function(err){
     if (err) throw err;
 });
-/*if(con.query("SELECT *FROM logs where staffID = 3 ")){
-    con.query("truncate logs ");
-    con.query("INSERT INTO logs(staffID,numberOfLoans)select employees_staffID,count(*) as numbers from loans GROUP by(employees_staffID) ",function(err,rows){
+
+        con.query("SELECT entered_ID as Staff_Number,UserName as Name, entered_amount as Amount_applied," +
+            " date_and_time_information_was_entered as Date_Applied,entered_first_guarantor as First_Guarantor, " +
+            "entered_second_guarantor as Second_Guarantor,entered_third_guarantor as Third_Guarantor FROM logTable " +
+            "WHERE staff_ID_existed AND first_guarantor_existed AND second_guarantor_existed AND third_guarantor_existed ",function(err,rows){
         if (err) {
             console.error("SQL error ", err);
         }
         console.log(rows);    });
-}*/
+
 /*
 con.query("INSERT INTO employees VALUES ?",[values],function(err,rows){
     if (err) {

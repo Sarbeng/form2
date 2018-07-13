@@ -13,5 +13,8 @@
     "ejs": "~2.6.1",
     "express-myconnection": "~1.0.4",
     "mysql": "~2.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
   }
 }

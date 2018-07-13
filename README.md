@@ -15,3 +15,26 @@
 
                                     });
                                 }
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                (DELIMITER$$"+
+                                      "CREATE TRIGGER trig_sd_check BEFORE INSERT ON loans"+
+                                      "FOR EACH ROW"+
+                                      "BEGIN"+
+                                      "IF NEW.'"+req.body.Amount+"'>3000 THEN"+
+                                      "SET NEW.'"+req.body.Amount+"' = 3000;"+
+                                      "END IF;"+
+                                      "END$$"+
+                                      "DELIMITER;)"  +
